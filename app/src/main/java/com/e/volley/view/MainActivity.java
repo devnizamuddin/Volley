@@ -42,12 +42,14 @@ public class MainActivity extends AppCompatActivity {
         final PostAdapter adapter = new PostAdapter(posts);
         recycler_view.setAdapter(adapter);
 
-        viewModel.getPosts().observe(this, new Observer<Post[]>() {
+       /* viewModel.getPosts().observe(this, new Observer<Post[]>() {
             @Override
             public void onChanged(Post[] posts) {
 
                 adapter.updatePosts(posts);
             }
-        });
+        });*/
+
+       viewModel.postPost();
     }
 }

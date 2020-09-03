@@ -7,6 +7,7 @@ import android.widget.Toast;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Cache;
 import com.android.volley.Network;
 import com.android.volley.Request;
@@ -21,7 +22,9 @@ import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class PostRepository {
 
@@ -133,6 +136,41 @@ public class PostRepository {
         RequestQueSingleTone.getInstance(application).addToRequestQue(request);
         return postsLiveData;
 
+
+    }
+
+    public void postPost(){
+
+
+
+        StringRequest request = new StringRequest(Request.Method.POST,URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                Log.d("Nizam", "response successful : "+response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                Log.d("Nizam", "response Error");
+
+            }
+        }){
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+
+                Map<String,String>user = new HashMap<>();
+                user.put("userId","1");
+                user.put("title","Hello");
+                user.put("body","I am here");
+
+                return user;
+            }
+        };
+
+        RequestQueSingleTone.getInstance(application).addToRequestQue(request);
 
     }
 

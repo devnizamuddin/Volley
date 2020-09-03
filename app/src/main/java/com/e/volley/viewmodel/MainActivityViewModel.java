@@ -27,5 +27,10 @@ public class MainActivityViewModel extends AndroidViewModel {
         return posts;
     }
 
+    public void postPost(){
+
+        postRepository.postPost();
+    }
+
 
 }
